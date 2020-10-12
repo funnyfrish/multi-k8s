@@ -4,9 +4,11 @@ docker build -t bekirbahadir/multi-worker:latest -t bekirbahadir/multi-worker:$S
 docker push bekirbahadir/multi-client:latest
 docker push bekirbahadir/multi-server:latest
 docker push bekirbahadir/multi-worker:latest
+
 docker push bekirbahadir/multi-client:$SHA
 docker push bekirbahadir/multi-server:$SHA
 docker push bekirbahadir/multi-worker:$SHA
+
 kubectl apply -f k8s
 kubectl set image deployments/server-deployment server=bekirbahadir/multi-server:$SHA
 kubectl set image deployments/client-deployment server=bekirbahadir/multi-client:$SHA
